@@ -2,12 +2,32 @@ import React, { useReducer } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
+const initialState = {
+  message: "hi",
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "yell":
+      return {
+        message: "HEY!",
+      };
+    case "whisper":
+      return {
+        message: "excuse me",
+      };
+    default:
+      return state;
+  }
+}
+
 function App() {
-  const [checked, toggle] = useReducer((checked) => !checked, false);
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <>
-      <input type="checkbox" value={checked} onChange={toggle} />
-      {checked ? "checked" : "not checked"}
+      <p>Message: {state.message}</p>
+      <button onClick={() => dispatch({ type: "yell" })}>YELL</button>
+      <button onClick={() => dispatch({ type: "whisper" })}>whisper</button>
     </>
   );
 }
