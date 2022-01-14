@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function useInput(initialValue) {
+export const useInput = (initialValue) => {
   const [value, setValue] = useState(initialValue);
 
   return [
@@ -10,4 +10,4 @@ export function useInput(initialValue) {
     },
     () => setValue(initialValue),
   ];
-}
+};
